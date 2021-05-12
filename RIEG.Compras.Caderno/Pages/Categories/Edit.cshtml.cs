@@ -9,22 +9,19 @@ using Microsoft.EntityFrameworkCore;
 using RIEG.Compras.Caderno.Data;
 using RIEG.Compras.Caderno.Pages.Models;
 
-namespace RIEG.Compras.Caderno.Pages.Products
+namespace RIEG.Compras.Caderno.Pages.Categories
 {
     public class EditModel : PageModel
     {
         private readonly RIEG.Compras.Caderno.Data.ApplicationDbContext _context;
-        
-        public SelectList Categories { get; set; }
 
         public EditModel(RIEG.Compras.Caderno.Data.ApplicationDbContext context)
         {
             _context = context;
-            Categories = new SelectList(_context.Category.ToList(), nameof(Category.ID), nameof(Category.Description));
         }
 
         [BindProperty]
-        public Product Product { get; set; }
+        public Category Category { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -33,9 +30,9 @@ namespace RIEG.Compras.Caderno.Pages.Products
                 return NotFound();
             }
 
-            Product = await _context.Product.FirstOrDefaultAsync(m => m.ID == id);
+            Category = await _context.Category.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Product == null)
+            if (Category == null)
             {
                 return NotFound();
             }
@@ -51,7 +48,7 @@ namespace RIEG.Compras.Caderno.Pages.Products
                 return Page();
             }
 
-            _context.Attach(Product).State = EntityState.Modified;
+            _context.Attach(Category).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +56,7 @@ namespace RIEG.Compras.Caderno.Pages.Products
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProductExists(Product.ID))
+                if (!CategoryExists(Category.ID))
                 {
                     return NotFound();
                 }
@@ -72,9 +69,9 @@ namespace RIEG.Compras.Caderno.Pages.Products
             return RedirectToPage("./Index");
         }
 
-        private bool ProductExists(int id)
+        private bool CategoryExists(int id)
         {
-            return _context.Product.Any(e => e.ID == id);
+            return _context.Category.Any(e => e.ID == id);
         }
     }
 }

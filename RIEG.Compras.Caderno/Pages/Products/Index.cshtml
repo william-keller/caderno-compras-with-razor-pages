@@ -33,7 +33,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model.Product) {
-        <tr>
+        <tr style="background-color: @Html.DisplayFor(modelItem => Model.Categories.FirstOrDefault(x => x.ID == item.CategoryId).Color);">
             <td>
                 @Html.DisplayFor(modelItem => item.Brand)
             </td>

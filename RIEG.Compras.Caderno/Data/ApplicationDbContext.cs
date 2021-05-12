@@ -14,5 +14,6 @@ namespace RIEG.Compras.Caderno.Data
         {
         }
         public DbSet<RIEG.Compras.Caderno.Pages.Models.Product> Product { get; set; }
+        public DbSet<RIEG.Compras.Caderno.Pages.Models.Category> Category { get; set; }
     }
 }

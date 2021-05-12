@@ -8,25 +8,22 @@ using Microsoft.EntityFrameworkCore;
 using RIEG.Compras.Caderno.Data;
 using RIEG.Compras.Caderno.Pages.Models;
 
-namespace RIEG.Compras.Caderno.Pages.Products
+namespace RIEG.Compras.Caderno.Pages.Categories
 {
     public class IndexModel : PageModel
     {
         private readonly RIEG.Compras.Caderno.Data.ApplicationDbContext _context;
-        
-        public List<Category> Categories { get; set; }
 
         public IndexModel(RIEG.Compras.Caderno.Data.ApplicationDbContext context)
         {
             _context = context;
-            Categories = _context.Category.ToList();
         }
 
-        public IList<Product> Product { get;set; }
+        public IList<Category> Category { get;set; }
 
         public async Task OnGetAsync()
         {
-            Product = await _context.Product.ToListAsync();
+            Category = await _context.Category.ToListAsync();
         }
     }
 }

@@ -8,18 +8,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using RIEG.Compras.Caderno.Data;
 using RIEG.Compras.Caderno.Pages.Models;
 
-namespace RIEG.Compras.Caderno.Pages.Products
+namespace RIEG.Compras.Caderno.Pages.Categories
 {
     public class CreateModel : PageModel
     {
         private readonly RIEG.Compras.Caderno.Data.ApplicationDbContext _context;
 
-        public SelectList Categories { get; set; }
-
         public CreateModel(RIEG.Compras.Caderno.Data.ApplicationDbContext context)
         {
             _context = context;
-            Categories = new SelectList(_context.Category.ToList(), nameof(Category.ID), nameof(Category.Description));
         }
 
         public IActionResult OnGet()
@@ -28,7 +25,7 @@ namespace RIEG.Compras.Caderno.Pages.Products
         }
 
         [BindProperty]
-        public Product Product { get; set; }
+        public Category Category { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -38,7 +35,7 @@ namespace RIEG.Compras.Caderno.Pages.Products
                 return Page();
             }
 
-            _context.Product.Add(Product);
+            _context.Category.Add(Category);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

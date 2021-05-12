@@ -1,0 +1,31 @@
+﻿@page
+@model RIEG.Compras.Caderno.Pages.Categories.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Category</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Category.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category.Color)
+        </dt>
+        <dd class="col-sm-10" style="background-color: @Html.DisplayFor(model => model.Category.Color);">
+            @Html.DisplayFor(model => model.Category.Color)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Category.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

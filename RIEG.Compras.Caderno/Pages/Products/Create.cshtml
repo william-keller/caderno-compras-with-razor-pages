@@ -14,6 +14,11 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="Product.CategoryId" class="control-label">Categoria</label>
+                <select asp-for="Product.CategoryId" asp-items="Model.Categories" class="form-control"></select>
+                <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Product.Brand" class="control-label"></label>
                 <input asp-for="Product.Brand" class="form-control" />
                 <span asp-validation-for="Product.Brand" class="text-danger"></span>
@@ -30,7 +35,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Product.Urgency" class="control-label"></label>
-                <select asp-for="Product.Urgency" class="form-control"></select>
+                <input asp-for="Product.Urgency" class="form-control"></input>
                 <span asp-validation-for="Product.Urgency" class="text-danger"></span>
             </div>
             <div class="form-group">
