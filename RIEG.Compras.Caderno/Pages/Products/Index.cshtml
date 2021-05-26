@@ -2,31 +2,31 @@
 @model RIEG.Compras.Caderno.Pages.Products.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Produtos";
 }
 
-<h1>Index</h1>
+<h1>Produtos</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Criar novo</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Product[0].Brand)
+                Marca
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Product[0].Description)
+                Descricao
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Product[0].Quantity)
+                Estoque
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Product[0].Urgency)
+                Prioridade
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Product[0].InsertDate)
+                Data inclusao
             </th>
             <th></th>
         </tr>
@@ -43,16 +43,16 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Urgency)
+            <td style="background-color: @Html.DisplayFor(modelItem => Model.Priorities.FirstOrDefault(x => x.ID == item.PriorityId).Color);">
+                @Html.DisplayFor(modelItem => Model.Priorities.FirstOrDefault(x => x.ID == item.PriorityId).Description)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.InsertDate)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Detalhes</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Deletar</a>
             </td>
         </tr>
 }

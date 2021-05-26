@@ -1,11 +1,11 @@
 ﻿@page
-@model RIEG.Compras.Caderno.Pages.Categories.IndexModel
+@model RIEG.Compras.Caderno.Pages.Priorities.IndexModel
 
 @{
-    ViewData["Title"] = "Categorias";
+    ViewData["Title"] = "Prioridades";
 }
 
-<h1>Categorias</h1>
+<h1>Prioridades</h1>
 
 <p>
     <a asp-page="Create">Criar nova</a>
@@ -20,7 +20,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Category) {
+@foreach (var item in Model.Priority) {
         <tr>
             <td style="background-color: @Html.DisplayFor(modelItem => item.Color);">
                 @Html.DisplayFor(modelItem => item.Description)

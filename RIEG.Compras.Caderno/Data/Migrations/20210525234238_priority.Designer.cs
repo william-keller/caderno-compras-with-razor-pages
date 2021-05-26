@@ -3,20 +3,22 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RIEG.Compras.Caderno.Data;
 
 namespace RIEG.Compras.Caderno.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210525234238_priority")]
+    partial class priority
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.6")
+                .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -237,24 +239,6 @@ namespace RIEG.Compras.Caderno.Data.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("RIEG.Compras.Caderno.Pages.Models.Priority", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Color")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Priority");
-                });
-
             modelBuilder.Entity("RIEG.Compras.Caderno.Pages.Models.Product", b =>
                 {
                     b.Property<int>("ID")
@@ -274,11 +258,11 @@ namespace RIEG.Compras.Caderno.Data.Migrations
                     b.Property<DateTime>("InsertDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PriorityId")
-                        .HasColumnType("int");
-
                     b.Property<decimal?>("Quantity")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Urgency")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 

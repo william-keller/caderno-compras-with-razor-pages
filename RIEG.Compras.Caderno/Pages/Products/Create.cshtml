@@ -19,6 +19,11 @@
                 <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Product.PriorityId" class="control-label">Prioridade</label>
+                <select asp-for="Product.PriorityId" asp-items="Model.Priorities" class="form-control"></select>
+                <span asp-validation-for="Product.PriorityId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Product.Brand" class="control-label"></label>
                 <input asp-for="Product.Brand" class="form-control" />
                 <span asp-validation-for="Product.Brand" class="text-danger"></span>
@@ -32,11 +37,6 @@
                 <label asp-for="Product.Quantity" class="control-label"></label>
                 <input asp-for="Product.Quantity" class="form-control" />
                 <span asp-validation-for="Product.Quantity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.Urgency" class="control-label"></label>
-                <input asp-for="Product.Urgency" class="form-control"></input>
-                <span asp-validation-for="Product.Urgency" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Product.InsertDate" class="control-label"></label>

@@ -9,24 +9,19 @@ using Microsoft.EntityFrameworkCore;
 using RIEG.Compras.Caderno.Data;
 using RIEG.Compras.Caderno.Pages.Models;
 
-namespace RIEG.Compras.Caderno.Pages.Products
+namespace RIEG.Compras.Caderno.Pages.Priorities
 {
     public class EditModel : PageModel
     {
         private readonly RIEG.Compras.Caderno.Data.ApplicationDbContext _context;
-        
-        public SelectList Categories { get; set; }
-        public SelectList Priorities { get; set; }
 
         public EditModel(RIEG.Compras.Caderno.Data.ApplicationDbContext context)
         {
             _context = context;
-            Categories = new SelectList(_context.Category.ToList(), nameof(Category.ID), nameof(Category.Description));
-            Priorities = new SelectList(_context.Priority.ToList(), nameof(Priority.ID), nameof(Priority.Description));
         }
 
         [BindProperty]
-        public Product Product { get; set; }
+        public Priority Priority { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -35,9 +30,9 @@ namespace RIEG.Compras.Caderno.Pages.Products
                 return NotFound();
             }
 
-            Product = await _context.Product.FirstOrDefaultAsync(m => m.ID == id);
+            Priority = await _context.Priority.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Product == null)
+            if (Priority == null)
             {
                 return NotFound();
             }
@@ -53,7 +48,7 @@ namespace RIEG.Compras.Caderno.Pages.Products
                 return Page();
             }
 
-            _context.Attach(Product).State = EntityState.Modified;
+            _context.Attach(Priority).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +56,7 @@ namespace RIEG.Compras.Caderno.Pages.Products
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProductExists(Product.ID))
+                if (!PriorityExists(Priority.ID))
                 {
                     return NotFound();
                 }
@@ -74,9 +69,9 @@ namespace RIEG.Compras.Caderno.Pages.Products
             return RedirectToPage("./Index");
         }
 
-        private bool ProductExists(int id)
+        private bool PriorityExists(int id)
         {
-            return _context.Product.Any(e => e.ID == id);
+            return _context.Priority.Any(e => e.ID == id);
         }
     }
 }

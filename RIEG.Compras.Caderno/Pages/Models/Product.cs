@@ -9,11 +9,11 @@ namespace RIEG.Compras.Caderno.Pages.Models
         public string Brand { get; set; }
         public string Description { get; set; }
         public decimal? Quantity { get; set; }
-        public string Urgency { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime InsertDate { get; set; }
 
         public int CategoryId { get; set; }
+        public int PriorityId { get; set; }
     }
 }
