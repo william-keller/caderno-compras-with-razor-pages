@@ -8,8 +8,36 @@
 <h1>Produtos</h1>
 
 <p>
-    <a asp-page="Create">Criar novo</a>
+    <a asp-page="Create" class="btn btn-outline-info"><i class="fas fa-plus"></i> Criar novo</a>
 </p>
+
+<br />
+
+<div class="container">
+    <form method="get">
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label class="control-label">Categoria</label>
+                    <select name="category" asp-for="SelectedCategory" asp-items="Model.CategorySelectList" class="form-control"></select>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label class="control-label">Prioridade</label>
+                    <select name="priority"  asp-for="SelectedPriority" asp-items="Model.PrioritySelectList" class="form-control"></select>
+                </div>
+            </div>
+            <div class="col"></div>
+            <div class="col-1">
+                <input type="submit" class="btn btn-outline-info" value="Filtrar" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<br />
+
 <table class="table">
     <thead>
         <tr>
@@ -32,29 +60,36 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Product) {
-        <tr style="background-color: @Html.DisplayFor(modelItem => Model.Categories.FirstOrDefault(x => x.ID == item.CategoryId).Color);">
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td style="background-color: @Html.DisplayFor(modelItem => Model.Priorities.FirstOrDefault(x => x.ID == item.PriorityId).Color);">
-                @Html.DisplayFor(modelItem => Model.Priorities.FirstOrDefault(x => x.ID == item.PriorityId).Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InsertDate)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Detalhes</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Deletar</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Product)
+        {
+            <tr style="background-color: @Html.DisplayFor(modelItem => Model.Categories.FirstOrDefault(x => x.ID == item.CategoryId).Color);">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td style="background-color: @Html.DisplayFor(modelItem => Model.Priorities.FirstOrDefault(x => x.ID == item.PriorityId).Color);">
+                    @Html.DisplayFor(modelItem => Model.Priorities.FirstOrDefault(x => x.ID == item.PriorityId).Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InsertDate)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID" class="btn btn-warning btn-sm">
+                        <i class="fas fa-edit"></i> Editar
+                    </a>
+                    <a asp-page="./Details" asp-route-id="@item.ID" class="btn btn-info btn-sm">
+                        <i class="fas fa-info"></i> Detalhes
+                    </a>
+                    <a asp-page="./Delete" asp-route-id="@item.ID" class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash-alt"></i> Deletar
+                    </a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
