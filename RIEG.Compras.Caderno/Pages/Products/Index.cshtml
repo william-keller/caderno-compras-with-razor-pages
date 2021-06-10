@@ -5,36 +5,46 @@
     ViewData["Title"] = "Produtos";
 }
 
+<form method="get">
+
 <h1>Produtos</h1>
 
 <p>
     <a asp-page="Create" class="btn btn-outline-info"><i class="fas fa-plus"></i> Criar novo</a>
+    <input type="submit" class="btn btn-outline-info" value="Filtrar" />
 </p>
 
 <br />
 
 <div class="container">
-    <form method="get">
         <div class="row">
-            <div class="col-4">
+            <div class="col-3">
                 <div class="form-group">
                     <label class="control-label">Categoria</label>
                     <select name="category" asp-for="SelectedCategory" asp-items="Model.CategorySelectList" class="form-control"></select>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <div class="form-group">
                     <label class="control-label">Prioridade</label>
                     <select name="priority"  asp-for="SelectedPriority" asp-items="Model.PrioritySelectList" class="form-control"></select>
                 </div>
             </div>
-            <div class="col"></div>
-            <div class="col-1">
-                <input type="submit" class="btn btn-outline-info" value="Filtrar" />
+            <div class="col-3">
+                <div class="form-group">
+                    <label class="control-label">Data De</label>
+                    <input type="date" name="dataDe" class="form-control" asp-for="DataDe" />
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <label class="control-label">Data Até</label>
+                    <input type="date" name="dataAte" class="form-control" asp-for="DataAte" />
+                </div>
             </div>
         </div>
-    </form>
 </div>
+</form>
 
 <br />
 
